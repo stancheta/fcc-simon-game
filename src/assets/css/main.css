@@ -1,61 +1,10 @@
 html, body {
   background: #FAF0E6;
   height: 100%;
-}
-
-h1 {
   text-align: center;
 }
 
-.simon-body {
-  background: #555;
-  margin: 10% auto;
-  padding: 1px;
-  height: 500px;
-  width: 600px;
-}
-
-.simon-menu {
-  background: #FFF;
-  height: 40%;
-  margin: 2.5%;
-  width: 95%;
-}
-
-.button-cir {
-  width: 2em;
-  height: 0;
-  padding-bottom: 2em;
-  border-radius: 50%;
-  border:1px solid #000;
-  overflow:hidden;
-}
-
-.simon-buttons {
-  height: 50%;
-  width: 100%;
-}
-
-.button-col {
-  float: left;
-  height: 100%;
-  margin: auto;
-  width: 46.25%;
-}
-
-.button-col:first-of-type {
-  margin: 0 2.5%;
-}
-
-.button-col > .button:first-of-type {
-  margin-bottom: 5%;
-}
-
-.button {
-  height: 45%;
-  width: 100%;
-}
-
+/* Colors */
 .red {
   background: #B22222;
 }
@@ -69,7 +18,7 @@ h1 {
   background: #22B222;
 }
 
-.bright-red {
+.bright-red, .off {
   background: red;
 }
 .bright-blue {
@@ -81,23 +30,81 @@ h1 {
 .bright-green {
   background: green;
 }
+.slate {
+  background: #789;
+}
+.on {
+  background: teal;
+}
 
+.indicator-on {
+  color: #22B222;
+}
+.indicator-off {
+  color: #B22222;
+}
+
+/*Bootstrap edits and add-on CSS*/
+
+.btn {
+  border-radius: 0;
+  margin-bottom: 10px;
+}
+
+.btn-xlg {
+  height: 6em;
+}
+
+.btn-xxlg {
+  height: 8em;
+}
+
+.row.small-pad {
+  margin-right:-5px;
+  margin-left:-5px;
+}
+.row.small-pad > [class*='col-'] {
+  padding-right:5px;
+  padding-left:5px;
+}
+
+/* App-specific CSS (sorted by position from top to bottom) */
+
+.simon-body {
+  background: #333;
+  margin-top: 10%;
+}
+
+.simon-screen {
+  background: #000;
+  height:6em;
+  margin: 1em 0;
+}
+
+.simon-screen>span{
+  color: #A22;
+  font-family:'Orbitron', sans-serif;
+  font-size: 4em;
+  margin: auto 0;
+  line-height: 175%;
+}
+
+.fa-indicator {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+}
+
+#strict>span {
+  font-size: 1.15em;
+  font-weight: bold;
+}
+
+/* For phone sizes */
 
 @media only screen and (max-width: 768px) {
   .simon-body {
-    height: 100%;
-    margin: 0;
-    width: 100%;
-  }
-  .button-col {
-    width: 47%;
+    margin-top: 0;
   }
 
-  .button-col:first-of-type {
-    margin: 0 1vw 0 2.5%;
-  }
-
-  .button-col > .button:first-of-type {
-    margin-bottom: 1vw;
-  }
 }
