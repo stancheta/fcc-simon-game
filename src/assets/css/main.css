@@ -1,0 +1,103 @@
+html, body {
+  background: #FAF0E6;
+  height: 100%;
+}
+
+h1 {
+  text-align: center;
+}
+
+.simon-body {
+  background: #555;
+  margin: 10% auto;
+  padding: 1px;
+  height: 500px;
+  width: 600px;
+}
+
+.simon-menu {
+  background: #FFF;
+  height: 40%;
+  margin: 2.5%;
+  width: 95%;
+}
+
+.button-cir {
+  width: 2em;
+  height: 0;
+  padding-bottom: 2em;
+  border-radius: 50%;
+  border:1px solid #000;
+  overflow:hidden;
+}
+
+.simon-buttons {
+  height: 50%;
+  width: 100%;
+}
+
+.button-col {
+  float: left;
+  height: 100%;
+  margin: auto;
+  width: 46.25%;
+}
+
+.button-col:first-of-type {
+  margin: 0 2.5%;
+}
+
+.button-col > .button:first-of-type {
+  margin-bottom: 5%;
+}
+
+.button {
+  height: 45%;
+  width: 100%;
+}
+
+.red {
+  background: #B22222;
+}
+.blue {
+  background: #2222B2;
+}
+.yellow {
+  background: #B2B222;
+}
+.green {
+  background: #22B222;
+}
+
+.bright-red {
+  background: red;
+}
+.bright-blue {
+  background: blue;
+}
+.bright-yellow {
+  background: yellow;
+}
+.bright-green {
+  background: green;
+}
+
+
+@media only screen and (max-width: 768px) {
+  .simon-body {
+    height: 100%;
+    margin: 0;
+    width: 100%;
+  }
+  .button-col {
+    width: 47%;
+  }
+
+  .button-col:first-of-type {
+    margin: 0 1vw 0 2.5%;
+  }
+
+  .button-col > .button:first-of-type {
+    margin-bottom: 1vw;
+  }
+}
