@@ -18,7 +18,7 @@ html, body {
   background: #22B222;
 }
 
-.bright-red, .off {
+.bright-red {
   background: red;
 }
 .bright-blue {
@@ -28,17 +28,14 @@ html, body {
   background: yellow;
 }
 .bright-green {
-  background: green;
+  background: #7F0;
 }
 .slate {
   background: #789;
 }
-.on {
-  background: teal;
-}
 
 .indicator-on {
-  color: #22B222;
+  color: #7F0;
 }
 .indicator-off {
   color: #B22222;

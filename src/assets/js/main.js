@@ -1,4 +1,4 @@
-/* global Model, View, Controller, $on, $id, document, $*/
+/* global Model, View, Controller, $on, document */
 
 /**
  *  MVC object for the Simon Says Game
