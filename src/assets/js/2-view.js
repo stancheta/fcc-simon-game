@@ -16,7 +16,7 @@ function View() {
   this.$buttons = $class(document, 'btn');
 
   // variables that handle state of view
-  this.appClickable = true;
+  this.simonClickable = false;
 
   // dictionary for btn colors (ex. btn-r)
   this.colorDict = {
@@ -32,8 +32,11 @@ View.prototype.setAppEvents = function(callback) {
   var that = this;
   $on(this.$appbody, 'click', function(e) {
     var tar = e.target;
-    if (that.appClickable === true && tar && $hasClass(tar, 'btn')) {
-      callback(tar.getAttribute('id'));
+    var id = tar.getAttribute('id');
+    if ((that.simonClickable === true ||
+        (that.simonClickable === false && id.charAt(0) !== 'b')) &&
+        tar && $hasClass(tar, 'btn')) {
+      callback(id);
     }
   });
 };
@@ -55,6 +58,14 @@ View.prototype.toggleButton = function(id) {
   var workingButton = $id(document, id);
   var buttonColor = this.colorDict[id.split('-')[1]];
   this._toggle(workingButton, buttonColor, 'bright-' + buttonColor);
+};
+
+View.prototype.enableSimon = function() {
+  this.simonClickable = true;
+};
+
+View.prototype.disableSimon = function() {
+  this.simonClickable = false;
 };
 
 // helper function for toggling events since all buttons toggle something

@@ -28,6 +28,7 @@ function $addClass(target, className) {
   target.classList.add(className);
 }
 
+// helper function that returns whether or not a target has a class
 function $hasClass(target, className) {
   if (target.classList) {
     return target.classList.contains(className);
@@ -52,4 +53,10 @@ function $removeAllChildren(target) {
   while (target.firstChild) {
     target.removeChild(target.firstChild);
   }
+}
+
+// helper function that returns a random number between min (inclusive) and
+// max (exclusive)
+function $rngInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
 }
