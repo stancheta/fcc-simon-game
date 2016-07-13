@@ -77,7 +77,7 @@ html, body {
 
 .simon-screen {
   background: #000;
-  height:6em;
+  height:10em;
   margin: 1em 0;
 }
 
@@ -85,8 +85,9 @@ html, body {
   color: #A22;
   font-family:'Orbitron', sans-serif;
   font-size: 4em;
+  line-height: 2.5em;
   margin: auto 0;
-  line-height: 175%;
+  padding: auto;
 }
 
 .fa-indicator {
@@ -103,8 +104,12 @@ html, body {
 /* For phone sizes */
 
 @media only screen and (max-width: 768px) {
+  body {
+    background: #333;
+  }
   .simon-body {
     margin-top: 0;
+    padding-top: 5%;
   }
 
 }
