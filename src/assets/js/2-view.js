@@ -60,10 +60,12 @@ View.prototype.toggleButton = function(id) {
   this._toggle(workingButton, buttonColor, 'bright-' + buttonColor);
 };
 
+// enables the simon buttons
 View.prototype.enableSimon = function() {
   this.simonClickable = true;
 };
 
+// disables the simon buttons
 View.prototype.disableSimon = function() {
   this.simonClickable = false;
 };
@@ -75,4 +77,13 @@ View.prototype._toggle = function(target, className1, className2) {
   } else {
     $toggleClass(target, className2, className1);
   }
+};
+
+// shows a click effect for pressing a simon button
+View.prototype.displaySimonButton = function(id) {
+  var that = this;
+  this.toggleButton(id);
+  setTimeout(function() {
+    that.toggleButton(id);
+  }, 200);
 };

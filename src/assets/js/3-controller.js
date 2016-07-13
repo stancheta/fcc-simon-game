@@ -28,7 +28,7 @@ Controller.prototype.setup = function() {
 Controller.prototype.buttonHandler = function(id) {
   var that = this;
   if (id === 'play') {
-    that._playHandler();
+    that._playButtonHandler();
   } else if (id === 'strict') {
     that._strictHandler();
   } else {
@@ -37,13 +37,12 @@ Controller.prototype.buttonHandler = function(id) {
 };
 
 // handles play button click event
-Controller.prototype._playHandler = function() {
+Controller.prototype._playButtonHandler = function() {
   this.view.togglePlay();
   this.simonStatus = !this.simonStatus;
-  if (this.simonStatus) {
-    this.view.disableSimon();
-    this._displayMoves(this.model.getMoveList());
-  } else {
+  if (this.simonStatus) { // starting the game
+    this._handleComputerMove(true);
+  } else { // turning off the game
     if (this.moveTimer) {
       clearInterval(this.moveTimer);
     }
@@ -57,9 +56,25 @@ Controller.prototype._strictHandler = function() {
 
 // handles simon buttons click event
 Controller.prototype._buttonHandler = function(id) {
-  this.view.toggleButton(id);
+  var that = this;
+  this.view.displaySimonButton(id);
+  this.model.inputPlayerMove(id, function(status) {
+    that._handlePlayerMove(status);
+  });
 };
 
+// private methods for play handler
+
+// handles the processes for the computer's move
+Controller.prototype._handleComputerMove = function(next) {
+  this.view.disableSimon();
+  if (next) {
+    this.model.incMove();
+  }
+  this._displayMoves(this.model.getMoveList());
+};
+
+// displays the computer's moves
 Controller.prototype._displayMoves = function(moveList) {
   var that = this;
   var count = 0;
@@ -68,6 +83,7 @@ Controller.prototype._displayMoves = function(moveList) {
   this.moveTimer = setInterval(function() {
     if (count === moveList.length) {
       clearInterval(that.moveTimer);
+      that.view.enableSimon();
     }
     if (turnOn) {
       turnOn = !turnOn;
@@ -78,4 +94,17 @@ Controller.prototype._displayMoves = function(moveList) {
       that.view.toggleButton(moveList[count - 1]);
     }
   }, this.MOVETIMERLENGTH);
+};
+
+// private methods for strict handler
+
+// private methods for button handler
+
+// handles the processes for the end of a player's move
+Controller.prototype._handlePlayerMove = function(status) {
+  if (status === 'success') {
+    this._handleComputerMove(true);
+  } else if (status === 'error') {
+    this._handleComputerMove(false);
+  }
 };
