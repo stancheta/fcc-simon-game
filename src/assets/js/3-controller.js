@@ -43,9 +43,7 @@ Controller.prototype._playButtonHandler = function() {
   if (this.simonStatus) { // starting the game
     this._handleComputerMove(true);
   } else { // turning off the game
-    if (this.moveTimer) {
-      clearInterval(this.moveTimer);
-    }
+
   }
 };
 
@@ -71,6 +69,7 @@ Controller.prototype._handleComputerMove = function(next) {
   if (next) {
     this.model.incMove();
   }
+  this.view.displayMove(this.model.getMove());
   this._displayMoves(this.model.getMoveList());
 };
 

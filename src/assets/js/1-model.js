@@ -32,6 +32,11 @@ Model.prototype.incMove = function() {
   this.simonCount++;
 };
 
+// returns the simon count
+Model.prototype.getMove = function() {
+  return this.simonCount;
+};
+
 // returns a portion of the generated move list
 Model.prototype.getMoveList = function() {
   var returnArray = this.simonSequence.slice(0, this.simonCount);

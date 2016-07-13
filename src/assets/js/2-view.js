@@ -1,4 +1,5 @@
-/* globals $on, $id, $class, $qs, $toggleClass, $hasClass, document */
+/* globals $on, $id, $class, $qs, $toggleClass, $hasClass, document,
+   $removeAllChildren*/
 
 /**
  * View Object
@@ -86,4 +87,14 @@ View.prototype.displaySimonButton = function(id) {
   setTimeout(function() {
     that.toggleButton(id);
   }, 200);
+};
+
+View.prototype.displayMove = function(move) {
+  if (move < 10) {
+    move = '0' + move;
+  }
+  var newTextNode = document.createTextNode(move);
+  var screen = $qs(document, '#screen>span');
+  $removeAllChildren(screen);
+  screen.appendChild(newTextNode);
 };
