@@ -4,8 +4,7 @@
  * View Object
  */
 function View() {
-  // this.$board = $id(document, 'board');
-  // this.$boxes = $class(document, 'box');
+  // shortcuts for all ids, important classes
   this.$appbody = $id(document, 'app-body');
   this.$screen = $id(document, 'screen');
   this.$btng = $id(document, 'btn-g');
@@ -16,8 +15,10 @@ function View() {
   this.$play = $id(document, 'play');
   this.$buttons = $class(document, 'btn');
 
-  this.AppClickable = true;
+  // variables that handle state of view
+  this.appClickable = true;
 
+  // dictionary for btn colors (ex. btn-r)
   this.colorDict = {
     r: 'red',
     g: 'green',
@@ -26,41 +27,41 @@ function View() {
   };
 }
 
+// sets app click event, uses deferred click event model
 View.prototype.setAppEvents = function(callback) {
+  var that = this;
   $on(this.$appbody, 'click', function(e) {
     var tar = e.target;
-    callback(tar.getAttribute('id'));
-    // console.log(tar.getAttribute('id'));
+    if (that.appClickable === true && tar && $hasClass(tar, 'btn')) {
+      callback(tar.getAttribute('id'));
+    }
   });
 };
 
+// sets click event for play button, toggles icon
 View.prototype.togglePlay = function() {
   var playIcon = $qs(document, '#play>i');
-
-  if ($hasClass(playIcon, 'fa-play')) {
-    $toggleClass(playIcon, 'fa-play', 'fa-stop');
-  } else {
-    $toggleClass(playIcon, 'fa-stop', 'fa-play');
-  }
+  this._toggle(playIcon, 'fa-play', 'fa-stop');
 };
 
+// sets click event for strict button, toggles indicator color
 View.prototype.toggleStrict = function() {
   var strictIndicator = $qs(document, '#strict>i');
-
-  if ($hasClass(strictIndicator, 'indicator-off')) {
-    $toggleClass(strictIndicator, 'indicator-off', 'indicator-on');
-  } else {
-    $toggleClass(strictIndicator, 'indicator-on', 'indicator-off');
-  }
+  this._toggle(strictIndicator, 'indicator-off', 'indicator-on');
 };
 
+// sets click event for simon says buttons, toggles button color
 View.prototype.toggleButton = function(id) {
   var workingButton = $id(document, id);
   var buttonColor = this.colorDict[id.split('-')[1]];
+  this._toggle(workingButton, buttonColor, 'bright-' + buttonColor);
+};
 
-  if ($hasClass(workingButton, buttonColor)) {
-    $toggleClass(workingButton, buttonColor, 'bright-' + buttonColor);
+// helper function for toggling events since all buttons toggle something
+View.prototype._toggle = function(target, className1, className2) {
+  if ($hasClass(target, className1)) {
+    $toggleClass(target, className1, className2);
   } else {
-    $toggleClass(workingButton, 'bright-' + buttonColor, buttonColor);
+    $toggleClass(target, className2, className1);
   }
 };
